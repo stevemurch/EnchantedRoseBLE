@@ -12,6 +12,7 @@
 		AA01EB122022538A005CB388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB102022538A005CB388 /* Main.storyboard */; };
 		AA01EB142022538A005CB388 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB132022538A005CB388 /* Assets.xcassets */; };
 		AA01EB172022538A005CB388 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB152022538A005CB388 /* LaunchScreen.storyboard */; };
+		AA01EB1F2022539C005CB388 /* BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA01EB1E2022539C005CB388 /* BLE.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,8 @@
 		AA01EB132022538A005CB388 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA01EB162022538A005CB388 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA01EB182022538A005CB388 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA01EB1E2022539C005CB388 /* BLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE.swift; sourceTree = "<group>"; };
+		AA01EB20202253EA005CB388 /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 				AA01EB132022538A005CB388 /* Assets.xcassets */,
 				AA01EB152022538A005CB388 /* LaunchScreen.storyboard */,
 				AA01EB182022538A005CB388 /* Info.plist */,
+				AA01EB1E2022539C005CB388 /* BLE.swift */,
+				AA01EB20202253EA005CB388 /* BLEDefines.h */,
 			);
 			path = EnchantedRoseBLE;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA01EB0F2022538A005CB388 /* ViewController.swift in Sources */,
+				AA01EB1F2022539C005CB388 /* BLE.swift in Sources */,
 				AA01EB0D2022538A005CB388 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
