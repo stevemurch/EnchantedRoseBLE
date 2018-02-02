@@ -17,6 +17,8 @@ protocol BLEDelegate {
 
 class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
+    var onDataUpdate: ((_ data: String) -> Void)?
+    
     let RBL_SERVICE_UUID = "713D0000-503E-4C75-BA94-3148F18D941E"
     let RBL_CHAR_TX_UUID = "713D0002-503E-4C75-BA94-3148F18D941E"
     let RBL_CHAR_RX_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
@@ -40,10 +42,25 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     @objc private func scanTimeout() {
         
         print("[DEBUG] Scanning stopped")
+        
         self.centralManager.stopScan()
     }
     
     // MARK: Public methods
+    
+    func disconnectAll() -> Bool {
+     
+        if (self.activePeripheral != nil)
+        {
+            self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
+        }
+        
+        onDataUpdate?("Disconnecting")
+        
+        return true
+    }
+    
+    
     func startScanning(timeout: Double) -> Bool {
         
         if self.centralManager.state != .poweredOn {
@@ -53,6 +70,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         
         print("[DEBUG] Scanning started")
+        onDataUpdate?("Scanning...")
         
         // CBCentralManagerScanOptionAllowDuplicatesKey
         
@@ -72,6 +90,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         if self.centralManager.state != .poweredOn {
             
             print("[ERROR] Couldn´t connect to peripheral")
+            onDataUpdate?("Could not connect")
             return false
         }
         
@@ -85,7 +104,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func disconnectFromPeripheral(peripheral: CBPeripheral) -> Bool {
         
         if self.centralManager.state != .poweredOn {
-            
+            onDataUpdate?("Could not disconnect")
             print("[ERROR] Couldn´t disconnect from peripheral")
             return false
         }
@@ -107,6 +126,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
         
         self.activePeripheral?.writeValue(data as Data, for: char, type: .withoutResponse)
+        
     }
     
     func enableNotifications(enable: Bool) {
@@ -132,22 +152,27 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             
         case .resetting:
             print("[DEBUG] Central manager state: Resseting")
+            onDataUpdate?("Resetting")
             break
             
         case .unsupported:
-            print("[DEBUG] Central manager state: Unsopported")
+            print("[DEBUG] Central manager state: Unsupported")
             break
             
         case .unauthorized:
             print("[DEBUG] Central manager state: Unauthorized")
+            onDataUpdate?("Unauthorized")
             break
             
         case .poweredOff:
             print("[DEBUG] Central manager state: Powered off")
+            onDataUpdate?("POWERED OFF")
+            
             break
             
         case .poweredOn:
             print("[DEBUG] Central manager state: Powered on")
+            onDataUpdate?("SCANNING")
             
             var scanResult = startScanning(timeout: 60)
             break
@@ -159,7 +184,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         print("[DEBUG] Did Discover \(peripheral.name) \(peripheral.identifier.uuidString) RSSI: \(RSSI)")
-        
+        onDataUpdate?("Discovered peripheral")
         
         let index = peripherals.index { $0.identifier.uuidString == peripheral.identifier.uuidString }
         
@@ -184,6 +209,9 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         print("[DEBUG] Connected to peripheral \(peripheral.identifier.uuidString)")
         
+        onDataUpdate?("CONNECTED")
+        
+        
         self.activePeripheral = peripheral
         
         self.activePeripheral?.delegate = self
@@ -199,7 +227,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         print("[DEBUG] Did discover services 2")
         
-        
+        onDataUpdate?("Ready!")
         if error != nil {
             print("[ERROR] Error discovering services. \(error!.localizedDescription)")
             return
@@ -231,6 +259,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         print("[ERROR] Could not connect to peripheral \(peripheral.identifier.uuidString) error: \(error!.description)")
+        onDataUpdate?("Could not connect")
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
@@ -243,11 +272,13 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         self.activePeripheral?.discoverServices([CBUUID(string: RBL_SERVICE_UUID)])
         
         self.delegate?.bleDidConnectToPeripheral()
+        onDataUpdate?("Connected")
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         
         var text = "[DEBUG] Disconnected from peripheral: \(peripheral.identifier.uuidString)"
+        onDataUpdate?("DISCONNECTED")
         
         if error != nil {
             text += ". Error: \(error!.description)"
@@ -267,6 +298,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         if error != nil {
             print("[ERROR] Error discovering services. \(error!.description)")
+            onDataUpdate?("Error discovering services")
             return
         }
         
@@ -284,6 +316,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         if error != nil {
             print("[ERROR] Error discovering characteristics. \(error!.localizedDescription)")
+            onDataUpdate?("Error discovering characteristics")
             return
         }
         
@@ -318,7 +351,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         if error != nil {
-            
+            onDataUpdate?("Error updating value")
             print("[ERROR] Error updating value. \(error!.description)")
             return
         }
