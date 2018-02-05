@@ -133,72 +133,31 @@ class ViewController: UIViewController, BLEDelegate {
     @IBOutlet weak var petal2Slider: UISlider!
     @IBOutlet weak var petal3Slider: UISlider!
     @IBOutlet weak var petal4Slider: UISlider!
-
+   
     
-    // pin 2
-    @IBAction func petal1Slid(_ sender: Any) {
-        // send it -- L followed by value
-        let valInt = UInt8(petal1Slider.value)
-        let petalPayload = NSData(bytes: [0x4C, 0x02, valInt] as [UInt8], length: 3)
+    // The tag value of the slider indicates which Pin on the Arduino should be moved
+    // arduino servo pins are 2,3,4,5 -- corresponding to UX petal switches 1,2,3,4
+
+    @IBAction func petalSlider(_ sender: UISlider) {
+        print(sender.tag)
+        
+        let pinNo = UInt8(sender.tag)
+        
+        let valInt = UInt8(sender.value)
+        let petalPayload = NSData(bytes: [0x4C, pinNo, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
         
-        if (valInt<170)
+        if (valInt<170) && (valInt>10)
         {
             showSliderTip()
         } else
         {
             hideSliderTip()
         }
-    }
-    
-    // pin3
-    @IBAction func petal2Slid(_ sender: Any) {
-        let valInt = UInt8(petal2Slider.value)
-        let petalPayload = NSData(bytes: [0x4C, 0x03, valInt] as [UInt8], length: 3)
-        ble.write(data: petalPayload)
-        if (valInt<170)
-        {
-            showSliderTip()
-        }
-        else
-        {
-            hideSliderTip()
-        }
         
     }
     
-    // pin 4
-    @IBAction func petal3Slid(_ sender: Any) {
-        let valInt = UInt8(petal3Slider.value)
-        let petalPayload = NSData(bytes: [0x4C, 0x05, valInt] as [UInt8], length: 3)
-        ble.write(data: petalPayload)
-        if (valInt<170)
-        {
-            showSliderTip()
-        }
-        else
-        {
-            hideSliderTip()
-        }
-    }
     
-    // pin 6
-    @IBAction func petal4Slid(_ sender: Any) {
-        let valInt = UInt8(petal4Slider.value)
-        let petalPayload = NSData(bytes: [0x4C, 0x06, valInt] as [UInt8], length: 3)
-        ble.write(data: petalPayload)
-        if (valInt<170)
-        {
-            showSliderTip()
-        }
-        else
-        {
-            hideSliderTip()
-        }
-    }
-    
-    
-    // arduino servo pins are 2,3,4,5 -- corresponding to UX petal switches 1,2,3,4
     
     
     @IBOutlet weak var webView: WKWebView!
