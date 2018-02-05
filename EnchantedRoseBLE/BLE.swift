@@ -44,6 +44,8 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         print("[DEBUG] Scanning stopped")
         
         self.centralManager.stopScan()
+        
+        
     }
     
     // MARK: Public methods
@@ -52,7 +54,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
      
         if (self.activePeripheral != nil)
         {
-            self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
+            _ = self.disconnectFromPeripheral(peripheral: self.activePeripheral!)
         }
         
         onDataUpdate?("Disconnecting")
@@ -66,11 +68,12 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         if self.centralManager.state != .poweredOn {
             
             print("[ERROR] Couldn´t start scanning")
+            onDataUpdate?("Couldn't start scanning")
             return false
         }
         
-        print("[DEBUG] Scanning started")
-        onDataUpdate?("Scanning...")
+        print("[DEBUG] Scanning has started")
+        onDataUpdate?("Scanning... Is prop powered on?")
         
         // CBCentralManagerScanOptionAllowDuplicatesKey
         
@@ -121,7 +124,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         self.activePeripheral?.readValue(for: char)
     }
     
-    func write(data data: NSData) {
+    func write(data: NSData) {
         
         guard let char = self.characteristics[RBL_CHAR_RX_UUID] else { return }
         
@@ -148,20 +151,26 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         switch central.state {
         case .unknown:
             print("[DEBUG] Central manager state: Unknown")
+            onDataUpdate?("State unknown")
             break
             
         case .resetting:
-            print("[DEBUG] Central manager state: Resseting")
+            print("[DEBUG] Central manager state: Resetting")
             onDataUpdate?("Resetting")
+            
+            
+            
             break
             
         case .unsupported:
             print("[DEBUG] Central manager state: Unsupported")
+            onDataUpdate?("State unsupported")
             break
             
         case .unauthorized:
             print("[DEBUG] Central manager state: Unauthorized")
             onDataUpdate?("Unauthorized")
+            
             break
             
         case .poweredOff:
@@ -172,9 +181,9 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             
         case .poweredOn:
             print("[DEBUG] Central manager state: Powered on")
-            onDataUpdate?("SCANNING")
+            onDataUpdate?("Scanning...")
             
-            var scanResult = startScanning(timeout: 60)
+            _ = startScanning(timeout: 60)
             break
         }
         
@@ -183,7 +192,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
-        print("[DEBUG] Did Discover \(peripheral.name) \(peripheral.identifier.uuidString) RSSI: \(RSSI)")
+        print("[DEBUG] Did Discover \(String(describing: peripheral.name)) \(peripheral.identifier.uuidString) RSSI: \(RSSI)")
         onDataUpdate?("Discovered peripheral")
         
         let index = peripherals.index { $0.identifier.uuidString == peripheral.identifier.uuidString }
@@ -194,7 +203,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             peripherals.append(peripheral)
         }
         
-        peripheral.delegate = self as! CBPeripheralDelegate
+        peripheral.delegate = self as CBPeripheralDelegate
         self.centralManager.connect(peripheral, options:nil)
         
         
@@ -257,8 +266,8 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
     }
     
-    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        print("[ERROR] Could not connect to peripheral \(peripheral.identifier.uuidString) error: \(error!.description)")
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("[ERROR] Could not connect to peripheral \(peripheral.identifier.uuidString) error: \(error!.localizedDescription)")
         onDataUpdate?("Could not connect")
     }
     
@@ -275,13 +284,13 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         onDataUpdate?("Connected")
     }
     
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         
         var text = "[DEBUG] Disconnected from peripheral: \(peripheral.identifier.uuidString)"
         onDataUpdate?("DISCONNECTED")
         
         if error != nil {
-            text += ". Error: \(error!.description)"
+            text += ". Error: \(error!.localizedDescription)"
         }
         
         print(text)
@@ -327,43 +336,29 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         
         enableNotifications(enable: true)
-        
-        
     }
     
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        
-        if error != nil {
-            print("[ERROR] Error discovering characteristics. \(error!.description)")
-            return
-        }
-        
-        print("[DEBUG] Found characteristics for peripheral: \(peripheral.identifier.uuidString)")
-        
-        for characteristic in service.characteristics! {
-            self.characteristics[characteristic.uuid.uuidString] = characteristic
-        }
-        
-        enableNotifications(enable: true)
-    }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    
+    
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
         if error != nil {
             onDataUpdate?("Error updating value")
-            print("[ERROR] Error updating value. \(error!.description)")
+            print("[ERROR] Error updating value. \(error!.localizedDescription)")
             return
         }
         
         if characteristic.uuid.uuidString == RBL_CHAR_TX_UUID {
-            
-            self.delegate?.bleDidReceiveData(data: characteristic.value as! NSData)
+            print(characteristic.value!)
+            self.delegate?.bleDidReceiveData(data: characteristic.value as NSData?)
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: NSError?) {
-        self.RSSICompletionHandler?(RSSI, error)
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
+        self.RSSICompletionHandler?(RSSI, error! as NSError)
         self.RSSICompletionHandler = nil
     }
 }

@@ -23,14 +23,25 @@ class ViewController: UIViewController, BLEDelegate {
     
     func bleDidConnectToPeripheral() {
         print("bleDidConnectToPeripheral")
+        
+        roseColorUIImageView.isHidden = false
+        roseBWUIImageVIew.isHidden = true
+        
     }
     
     func bleDidDisconenctFromPeripheral() {
         print("bleDidDisconenctFromPeripheral")
+        roseColorUIImageView.isHidden = true
+        roseBWUIImageVIew.isHidden = false
     }
     
     func bleDidReceiveData(data: NSData?) {
         print("bleDidReceiveData")
+        if let datastring = NSString(data: data! as Data, encoding: String.Encoding.utf8.rawValue)
+        {
+            lblConnectionStatus.text = datastring as String
+        }
+        
     }
     
 
@@ -39,6 +50,8 @@ class ViewController: UIViewController, BLEDelegate {
     
     
     // User Interface
+    @IBOutlet weak var roseBWUIImageVIew: UIImageView!
+    @IBOutlet weak var roseColorUIImageView: UIImageView!
     
     @IBOutlet weak var lblConnectionStatus: UILabel!
     
@@ -75,11 +88,7 @@ class ViewController: UIViewController, BLEDelegate {
         }))
         
         present(refreshAlert, animated: true, completion: nil)
-        
-        
-        
-        
-        
+       
     }
 
     @IBOutlet weak var lightSegmentedControl: UISegmentedControl!
@@ -142,14 +151,14 @@ class ViewController: UIViewController, BLEDelegate {
     // pin 4
     @IBAction func petal3Slid(_ sender: Any) {
         let valInt = UInt8(petal3Slider.value)
-        let petalPayload = NSData(bytes: [0x4C, 0x04, valInt] as [UInt8], length: 3)
+        let petalPayload = NSData(bytes: [0x4C, 0x05, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
     }
     
     // pin 5
     @IBAction func petal4Slid(_ sender: Any) {
         let valInt = UInt8(petal4Slider.value)
-        let petalPayload = NSData(bytes: [0x4C, 0x05, valInt] as [UInt8], length: 3)
+        let petalPayload = NSData(bytes: [0x4C, 0x06, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
     }
     
@@ -223,7 +232,7 @@ class ViewController: UIViewController, BLEDelegate {
         ble.delegate = self
         
         //print("Disconnecting all...")
-        ble.disconnectAll()
+        _ = ble.disconnectAll()
         
         
         

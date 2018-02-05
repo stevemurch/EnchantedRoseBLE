@@ -46,6 +46,8 @@
 		AA01EB5E202282D2005CB388 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB40202282D2005CB388 /* Icon-40.png */; };
 		AA2235572024E5CE00FD7945 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2235562024E5CE00FD7945 /* WebKit.framework */; };
 		AA22355B2024E77300FD7945 /* overview.html in Resources */ = {isa = PBXBuildFile; fileRef = AA22355A2024E77300FD7945 /* overview.html */; };
+		AABB3F9C20266E7C0049C9CF /* enchanted-rose-bw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */; };
+		AABB3F9E2028E95D0049C9CF /* light-bulb-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AABB3F9D2028E95C0049C9CF /* light-bulb-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +93,8 @@
 		AA01EB40202282D2005CB388 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
 		AA2235562024E5CE00FD7945 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		AA22355A2024E77300FD7945 /* overview.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = overview.html; sourceTree = "<group>"; };
+		AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "enchanted-rose-bw.jpg"; sourceTree = "<group>"; };
+		AABB3F9D2028E95C0049C9CF /* light-bulb-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-bulb-icon.png"; path = "../../../../Downloads/light-bulb-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,11 +129,13 @@
 		AA01EB0B2022538A005CB388 /* EnchantedRoseBLE */ = {
 			isa = PBXGroup;
 			children = (
+				AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */,
 				AA01EB2120227C38005CB388 /* enchanted-rose.jpg */,
 				AA01EB0C2022538A005CB388 /* AppDelegate.swift */,
 				AA01EB0E2022538A005CB388 /* ViewController.swift */,
 				AA01EB102022538A005CB388 /* Main.storyboard */,
 				AA01EB132022538A005CB388 /* Assets.xcassets */,
+				AABB3F9D2028E95C0049C9CF /* light-bulb-icon.png */,
 				AA01EB37202282D0005CB388 /* Icon-16.png */,
 				AA01EB3F202282D1005CB388 /* Icon-20.png */,
 				AA01EB31202282CF005CB388 /* Icon-29.png */,
@@ -242,6 +248,7 @@
 				AA01EB47202282D2005CB388 /* Icon-120.png in Resources */,
 				AA01EB48202282D2005CB388 /* Icon-64.png in Resources */,
 				AA01EB4D202282D2005CB388 /* Icon-196.png in Resources */,
+				AABB3F9E2028E95D0049C9CF /* light-bulb-icon.png in Resources */,
 				AA01EB49202282D2005CB388 /* Icon-88.png in Resources */,
 				AA01EB58202282D2005CB388 /* Icon-72.png in Resources */,
 				AA01EB4A202282D2005CB388 /* Icon-57.png in Resources */,
@@ -250,6 +257,7 @@
 				AA01EB52202282D2005CB388 /* Icon-58.png in Resources */,
 				AA01EB4F202282D2005CB388 /* Icon-29.png in Resources */,
 				AA01EB5B202282D2005CB388 /* Icon-100.png in Resources */,
+				AABB3F9C20266E7C0049C9CF /* enchanted-rose-bw.jpg in Resources */,
 				AA01EB5D202282D2005CB388 /* Icon-20.png in Resources */,
 				AA01EB51202282D2005CB388 /* Icon-32.png in Resources */,
 				AA01EB172022538A005CB388 /* LaunchScreen.storyboard in Resources */,

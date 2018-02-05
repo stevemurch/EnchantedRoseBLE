@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,15 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EnchantedRoseBLE" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enchanted-rose.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yV6-wj-hcS">
-                                <rect key="frame" x="-31" y="-15" width="441" height="682"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enchanted-rose-bw.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aci-mf-x0p">
+                                <rect key="frame" x="0.0" y="-15" width="375" height="644"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enchanted-rose.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yV6-wj-hcS">
+                                <rect key="frame" x="0.0" y="-15" width="375" height="644"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Petal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zf-wV-foN">
@@ -36,17 +40,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6w-fc-pUU">
-                                <rect key="frame" x="130" y="614" width="119" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Reset Prop">
-                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetProp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mUh-Jx-wbM"/>
-                                </connections>
-                            </button>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="180" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGr-4b-bTL">
                                 <rect key="frame" x="28" y="215" width="322" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,14 +69,44 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gj-eE-Xx9">
-                                <rect key="frame" x="326" y="618" width="22" height="22"/>
+                                <rect key="frame" x="326" y="726" width="22" height="22"/>
                                 <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <connections>
                                     <action selector="toggleHelp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3v9-WB-ejv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6w-fc-pUU">
+                                <rect key="frame" x="122.66666666666669" y="711" width="130" height="47"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <inset key="contentEdgeInsets" minX="18" minY="12" maxX="18" maxY="12"/>
+                                <state key="normal" title="Reset Prop">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetProp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mUh-Jx-wbM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-rh-9UR">
+                                <rect key="frame" x="147.66666666666666" y="667" width="80" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Eo7-7M-3an">
+                                <rect key="frame" x="37.333333333333343" y="547" width="302" height="29"/>
+                                <segments>
+                                    <segment title="OFF" width="100"/>
+                                    <segment title="ON" width="100"/>
+                                    <segment title="PULSE" width="100"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="lightSegmentedControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8sC-7L-jo8"/>
+                                </connections>
+                            </segmentedControl>
                             <wkWebView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-jO-UW9">
-                                <rect key="frame" x="16" y="91" width="343" height="515"/>
+                                <rect key="frame" x="16" y="93" width="343" height="429"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -91,38 +114,24 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mHm-rh-9UR">
-                                <rect key="frame" x="16" y="42" width="343" height="21"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="light-bulb-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="3RU-la-sj6">
+                                <rect key="frame" x="0.0" y="547" width="36" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Light" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTI-jR-QDN">
-                                <rect key="frame" x="28" y="503" width="47" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Eo7-7M-3an">
-                                <rect key="frame" x="25" y="534" width="323" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Off"/>
-                                    <segment title="Dim Accent"/>
-                                    <segment title="Pulse"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="lightSegmentedControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8sC-7L-jo8"/>
-                                </connections>
-                            </segmentedControl>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6Gj-eE-Xx9" secondAttribute="bottom" constant="27" id="WaD-Kt-g6V"/>
+                            <constraint firstItem="mHm-rh-9UR" firstAttribute="top" secondItem="Eo7-7M-3an" secondAttribute="bottom" constant="92" id="67y-ty-A6a"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="q6w-fc-pUU" secondAttribute="bottom" constant="20" id="FDr-uj-1iE"/>
+                            <constraint firstItem="mHm-rh-9UR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M5K-iO-xz8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6Gj-eE-Xx9" secondAttribute="bottom" constant="30" id="WaD-Kt-g6V"/>
+                            <constraint firstItem="q6w-fc-pUU" firstAttribute="top" secondItem="mHm-rh-9UR" secondAttribute="bottom" constant="24" id="eYV-dY-Wde"/>
+                            <constraint firstItem="Eo7-7M-3an" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kmP-Vn-3eD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Gj-eE-Xx9" secondAttribute="trailing" constant="27" id="sKN-ft-DAs"/>
+                            <constraint firstItem="q6w-fc-pUU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="u5m-px-OT7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -133,15 +142,19 @@
                         <outlet property="petal2Slider" destination="YGr-4b-bTL" id="roU-G2-8GO"/>
                         <outlet property="petal3Slider" destination="DMk-Tf-UEa" id="0LT-BX-9pa"/>
                         <outlet property="petal4Slider" destination="Mlz-mf-kX7" id="gtE-o2-VuO"/>
+                        <outlet property="roseBWUIImageVIew" destination="aci-mf-x0p" id="lM6-cJ-ncD"/>
+                        <outlet property="roseColorUIImageView" destination="yV6-wj-hcS" id="2wu-Zv-KOq"/>
                         <outlet property="webView" destination="4e2-jO-UW9" id="hLP-a0-tXA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="21.600000000000001" y="29.23538230884558"/>
+            <point key="canvasLocation" x="21.600000000000001" y="28.817733990147783"/>
         </scene>
     </scenes>
     <resources>
+        <image name="enchanted-rose-bw.jpg" width="702" height="900"/>
         <image name="enchanted-rose.jpg" width="702" height="900"/>
+        <image name="light-bulb-icon.png" width="1024" height="1024"/>
     </resources>
 </document>
