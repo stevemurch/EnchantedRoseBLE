@@ -157,9 +157,6 @@ class ViewController: UIViewController, BLEDelegate {
         
     }
     
-    
-    
-    
     @IBOutlet weak var webView: WKWebView!
     
     @IBAction func toggleHelp(_ sender: Any) {
@@ -236,8 +233,6 @@ class ViewController: UIViewController, BLEDelegate {
         
         //print("Disconnecting all...")
         _ = ble.disconnectAll()
-        
-        
         
         //print("viewDidLoad")
         

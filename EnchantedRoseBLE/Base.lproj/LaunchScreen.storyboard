@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enchanted-rose-bw.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-Hr-66y">
-                                <rect key="frame" x="0.0" y="-15" width="375" height="644"/>
+                                <rect key="frame" x="-4" y="-15" width="375" height="644"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
