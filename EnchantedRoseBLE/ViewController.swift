@@ -56,7 +56,10 @@ class ViewController: UIViewController, BLEDelegate {
     @IBOutlet weak var lblConnectionStatus: UILabel!
     
     
-
+    @IBOutlet weak var lblSliderTip: UILabel!
+    
+    
+    
     
     @IBAction func resetProp(_ sender: Any) {
         
@@ -138,6 +141,14 @@ class ViewController: UIViewController, BLEDelegate {
         let valInt = UInt8(petal1Slider.value)
         let petalPayload = NSData(bytes: [0x4C, 0x02, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
+        
+        if (valInt<170)
+        {
+            showSliderTip()
+        } else
+        {
+            hideSliderTip()
+        }
     }
     
     // pin3
@@ -145,7 +156,15 @@ class ViewController: UIViewController, BLEDelegate {
         let valInt = UInt8(petal2Slider.value)
         let petalPayload = NSData(bytes: [0x4C, 0x03, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
-
+        if (valInt<170)
+        {
+            showSliderTip()
+        }
+        else
+        {
+            hideSliderTip()
+        }
+        
     }
     
     // pin 4
@@ -153,13 +172,29 @@ class ViewController: UIViewController, BLEDelegate {
         let valInt = UInt8(petal3Slider.value)
         let petalPayload = NSData(bytes: [0x4C, 0x05, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
+        if (valInt<170)
+        {
+            showSliderTip()
+        }
+        else
+        {
+            hideSliderTip()
+        }
     }
     
-    // pin 5
+    // pin 6
     @IBAction func petal4Slid(_ sender: Any) {
         let valInt = UInt8(petal4Slider.value)
         let petalPayload = NSData(bytes: [0x4C, 0x06, valInt] as [UInt8], length: 3)
         ble.write(data: petalPayload)
+        if (valInt<170)
+        {
+            showSliderTip()
+        }
+        else
+        {
+            hideSliderTip()
+        }
     }
     
     
@@ -197,7 +232,16 @@ class ViewController: UIViewController, BLEDelegate {
         
     }
     
-    // servo pins are 2, 3, 4 and 5
+    func showSliderTip()
+    {
+        lblSliderTip.isHidden = false
+    }
+    func hideSliderTip()
+    {
+        lblSliderTip.isHidden = true
+    }
+    
+    // servo pins are 2, 3, 5 and 6
     
     
     

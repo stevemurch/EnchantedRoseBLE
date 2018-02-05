@@ -121,6 +121,13 @@
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tip: Move slider all the way to drop the petal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gQ-2v-UNO">
+                                <rect key="frame" x="30" y="381" width="318" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.76670082192594768" blue="0.2313240437212235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -137,6 +144,7 @@
                     </view>
                     <connections>
                         <outlet property="lblConnectionStatus" destination="mHm-rh-9UR" id="Esz-Cx-jmX"/>
+                        <outlet property="lblSliderTip" destination="7gQ-2v-UNO" id="1Rr-fr-SRK"/>
                         <outlet property="lightSegmentedControl" destination="Eo7-7M-3an" id="s6T-i5-VL1"/>
                         <outlet property="petal1Slider" destination="GOJ-LC-Yhp" id="dOG-5v-95T"/>
                         <outlet property="petal2Slider" destination="YGr-4b-bTL" id="roU-G2-8GO"/>
