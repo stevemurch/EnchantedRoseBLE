@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import WebKit
+
 
 
 // Petal - L{pin}{value}
 // Light - H{value}     (0 = off, 1 = Dim, 2 = Pulse)
 // Reset - K  (kill)
 // General Text -
-//
+// Set Color: C
 
 class ViewController: UIViewController, BLEDelegate {
     func bleDidUpdateState() {
@@ -23,14 +23,12 @@ class ViewController: UIViewController, BLEDelegate {
     
     func bleDidConnectToPeripheral() {
         print("bleDidConnectToPeripheral")
-        
         roseColorUIImageView.isHidden = false
         roseBWUIImageVIew.isHidden = true
-        
     }
     
-    func bleDidDisconenctFromPeripheral() {
-        print("bleDidDisconenctFromPeripheral")
+    func bleDidDisconnectFromPeripheral() {
+        print("bleDidDisconnectFromPeripheral")
         roseColorUIImageView.isHidden = true
         roseBWUIImageVIew.isHidden = false
     }
@@ -41,38 +39,31 @@ class ViewController: UIViewController, BLEDelegate {
         {
             lblConnectionStatus.text = datastring as String
         }
-        
     }
-    
-
-    var ble = BLE()
-    
-    
+  
     
     // User Interface
     @IBOutlet weak var roseBWUIImageVIew: UIImageView!
     @IBOutlet weak var roseColorUIImageView: UIImageView!
-    
     @IBOutlet weak var lblConnectionStatus: UILabel!
-    
-    
     @IBOutlet weak var lblSliderTip: UILabel!
     
     
+    func getBle() -> BLE {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.ble
+    }
     
     
     @IBAction func resetProp(_ sender: Any) {
-        
-        
+
         let refreshAlert = UIAlertController(title: "Reset Enchanted Rose", message: "Are you sure? Do not use this DURING a performance.", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
-            
-            // send a K
            
+            // send a K
             let dataPinLow = NSData(bytes: [0x4B] as [UInt8], length: 1)
-            self.ble.write(data: dataPinLow)
+            self.getBle().write(data: dataPinLow)
             
             self.petal1Slider.value = 0
             self.petal2Slider.value = 0
@@ -81,9 +72,6 @@ class ViewController: UIViewController, BLEDelegate {
             
             self.turnOffLight()
             self.lightSegmentedControl.selectedSegmentIndex = 0
-            
-            
-            
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -100,7 +88,7 @@ class ViewController: UIViewController, BLEDelegate {
     {
         let payload = NSData(bytes: [0x48, 0x00] as [UInt8], length: 2)
         
-        ble.write(data: payload)
+        getBle().write(data: payload)
     }
     
     @IBAction func lightSegmentedControlChanged(_ sender: Any) {
@@ -120,13 +108,10 @@ class ViewController: UIViewController, BLEDelegate {
         default:
             lightValue = 0
         }
-       
         
         let payload = NSData(bytes: [0x48, lightValue] as [UInt8], length: 2)
-        
-        ble.write(data: payload)
-        
-        
+        getBle().write(data: payload)
+
     }
     
     @IBOutlet weak var petal1Slider: UISlider!
@@ -145,7 +130,7 @@ class ViewController: UIViewController, BLEDelegate {
         
         let valInt = UInt8(sender.value)
         let petalPayload = NSData(bytes: [0x4C, pinNo, valInt] as [UInt8], length: 3)
-        ble.write(data: petalPayload)
+        getBle().write(data: petalPayload)
         
         if (valInt<170) && (valInt>10)
         {
@@ -157,18 +142,9 @@ class ViewController: UIViewController, BLEDelegate {
         
     }
     
-    @IBOutlet weak var webView: WKWebView!
     
-    @IBAction func toggleHelp(_ sender: Any) {
-        
-        let htmlPath = Bundle.main.path(forResource: "overview", ofType: "html")
-        
-        let url = URL(fileURLWithPath: htmlPath!)
-        
-        let request = URLRequest(url: url)
-        webView.load(request)
-        webView.isHidden = !webView.isHidden
-    }
+    
+    
     
     
     func setStatusText(string: String)
@@ -178,29 +154,22 @@ class ViewController: UIViewController, BLEDelegate {
     
     
     func sendDataToBLE(data: NSData) -> Bool {
-        
         let dataPin7High = NSData(bytes: [0x54, 0x07, 0x01] as [UInt8], length: 3)
-        
-        ble.write(data: dataPin7High)
-        
+        getBle().write(data: dataPin7High)
         return true
-        
-        
     }
     
     func showSliderTip()
     {
         lblSliderTip.isHidden = false
     }
+    
     func hideSliderTip()
     {
         lblSliderTip.isHidden = true
     }
     
     // servo pins are 2, 3, 5 and 6
-    
-    
-    
     
     @IBAction func writeDataClicked(_ sender: Any) {
         
@@ -209,14 +178,13 @@ class ViewController: UIViewController, BLEDelegate {
         // command to T 7 1  (seT digital pin 7 to HIGH)
         let dataPin7High = NSData(bytes: [0x54, 0x0D, 0x01] as [UInt8], length: 3)
         
-        ble.write(data: dataPin7High)
-        
+        getBle().write(data: dataPin7High)
         sleep(1)
         
         // command to T 7 1  (seT digital pin 7 to HIGH)
         let dataPin7Low = NSData(bytes: [0x54, 0x07, 0x00] as [UInt8], length: 3)
         
-        ble.write(data: dataPin7Low)
+        getBle().write(data: dataPin7Low)
         
     }
     
@@ -226,22 +194,34 @@ class ViewController: UIViewController, BLEDelegate {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        ble.delegate = self
+        getBle().delegate = self // I'd like to receive messages from BLE device
         
-        //print("Disconnecting all...")
-        _ = ble.disconnectAll()
         
-        //print("viewDidLoad")
+        //_ = getBle().disconnectAll() // reset
         
-        ble.onDataUpdate = { [weak self] (data: String) in
+        getBle().onDataUpdate = { [weak self] (data: String) in
+            
+            // when a data update is received, push it to screen
+            
             self?.updateConnectionLabel(data: data)
         }
         
+        if (getBle().isConnected)
+        {
+            self.roseBWUIImageVIew.isHidden = true
+            self.roseColorUIImageView.isHidden = false
+        } else
+        {
+            self.roseBWUIImageVIew.isHidden = false
+            self.roseColorUIImageView.isHidden = true
+        }
         
-        
+ 
+  
     }
 
     override func didReceiveMemoryWarning() {

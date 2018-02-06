@@ -11,7 +11,7 @@ import CoreBluetooth
 protocol BLEDelegate {
     func bleDidUpdateState()
     func bleDidConnectToPeripheral()
-    func bleDidDisconenctFromPeripheral()
+    func bleDidDisconnectFromPeripheral()
     func bleDidReceiveData(data: NSData?)
 }
 
@@ -31,6 +31,8 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private      var data:             NSMutableData?
     private(set) var peripherals     = [CBPeripheral]()
     private      var RSSICompletionHandler: ((NSNumber?, NSError?) -> ())?
+    
+    var isConnected: Bool = false
     
     override init() {
         super.init()
@@ -220,6 +222,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         onDataUpdate?("CONNECTED")
         
+        isConnected = true
         
         self.activePeripheral = peripheral
         
@@ -237,6 +240,9 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         print("[DEBUG] Did discover services 2")
         
         onDataUpdate?("Ready!")
+        
+        isConnected = true
+        
         if error != nil {
             print("[ERROR] Error discovering services. \(error!.localizedDescription)")
             return
@@ -269,6 +275,8 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("[ERROR] Could not connect to peripheral \(peripheral.identifier.uuidString) error: \(error!.localizedDescription)")
         onDataUpdate?("Could not connect")
+        isConnected = false
+        
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
@@ -282,6 +290,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         self.delegate?.bleDidConnectToPeripheral()
         onDataUpdate?("Connected")
+        isConnected = true
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -294,12 +303,13 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         
         print(text)
-        
+        isConnected = false 
         self.activePeripheral?.delegate = nil
         self.activePeripheral = nil
         self.characteristics.removeAll(keepingCapacity: false)
         
-        self.delegate?.bleDidDisconenctFromPeripheral()
+        self.delegate?.bleDidDisconnectFromPeripheral()
+        
     }
     
     // MARK: CBPeripheral delegate

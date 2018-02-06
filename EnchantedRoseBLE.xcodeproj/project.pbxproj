@@ -48,6 +48,7 @@
 		AA22355B2024E77300FD7945 /* overview.html in Resources */ = {isa = PBXBuildFile; fileRef = AA22355A2024E77300FD7945 /* overview.html */; };
 		AABB3F9C20266E7C0049C9CF /* enchanted-rose-bw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */; };
 		AABB3F9E2028E95D0049C9CF /* light-bulb-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AABB3F9D2028E95C0049C9CF /* light-bulb-icon.png */; };
+		AACDC6DE202A6B6600447C57 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACDC6DD202A6B6600447C57 /* HelpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,7 @@
 		AA22355A2024E77300FD7945 /* overview.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = overview.html; sourceTree = "<group>"; };
 		AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "enchanted-rose-bw.jpg"; sourceTree = "<group>"; };
 		AABB3F9D2028E95C0049C9CF /* light-bulb-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-bulb-icon.png"; path = "../../../../Downloads/light-bulb-icon.png"; sourceTree = "<group>"; };
+		AACDC6DD202A6B6600447C57 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				AA01EB1E2022539C005CB388 /* BLE.swift */,
 				AA01EB20202253EA005CB388 /* BLEDefines.h */,
 				AA22355A2024E77300FD7945 /* overview.html */,
+				AACDC6DD202A6B6600447C57 /* HelpViewController.swift */,
 			);
 			path = EnchantedRoseBLE;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				AA01EB0F2022538A005CB388 /* ViewController.swift in Sources */,
 				AA01EB1F2022539C005CB388 /* BLE.swift in Sources */,
 				AA01EB0D2022538A005CB388 /* AppDelegate.swift in Sources */,
+				AACDC6DE202A6B6600447C57 /* HelpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

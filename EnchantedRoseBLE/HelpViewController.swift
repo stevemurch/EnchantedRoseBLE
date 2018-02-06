@@ -2,7 +2,7 @@
 //  HelpViewController.swift
 //  EnchantedRoseBLE
 //
-//  Created by Steve Murch on 2/2/18.
+//  Created by Steve Murch on 2/6/18.
 //  Copyright © 2018 Steve Murch. All rights reserved.
 //
 
@@ -11,20 +11,23 @@ import WebKit
 
 class HelpViewController: UIViewController {
 
-    
     @IBOutlet weak var webView: WKWebView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //webView.bounds = self.view.bounds
-        
-        let htmlFile = Bundle.main.path(forResource: "overview", ofType: "html")
-        let html = try? String(contentsOfFile: htmlFile!, encoding: String.Encoding.utf8)
-        webView.loadHTMLString(html!, baseURL: nil)
 
+        showHelp()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func showHelp() {
+        
+        let htmlPath = Bundle.main.path(forResource: "overview", ofType: "html")
+        let url = URL(fileURLWithPath: htmlPath!)
+        let request = URLRequest(url: url)
+        webView.load(request)
+        
     }
 
     override func didReceiveMemoryWarning() {

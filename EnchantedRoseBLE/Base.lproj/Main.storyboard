@@ -68,13 +68,6 @@
                                     <action selector="petalSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="d0p-DZ-zAI"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gj-eE-Xx9">
-                                <rect key="frame" x="326" y="726" width="22" height="22"/>
-                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <connections>
-                                    <action selector="toggleHelp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3v9-WB-ejv"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6w-fc-pUU">
                                 <rect key="frame" x="122.66666666666669" y="711" width="130" height="47"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,22 +93,6 @@
                                     <action selector="lightSegmentedControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="8sC-7L-jo8"/>
                                 </connections>
                             </segmentedControl>
-                            <wkWebView hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-jO-UW9">
-                                <rect key="frame" x="17" y="69" width="343" height="429"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <imageView userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="light-bulb-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="3RU-la-sj6">
-                                <rect key="frame" x="0.0" y="547" width="36" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                </accessibility>
-                            </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TIP: Move slider all the way to drop the petal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gQ-2v-UNO">
                                 <rect key="frame" x="30" y="506" width="318" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -129,14 +106,27 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="light-bulb-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="3RU-la-sj6">
+                                <rect key="frame" x="5" y="547" width="29" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gj-eE-Xx9">
+                                <rect key="frame" x="326" y="78" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <connections>
+                                    <segue destination="p6Q-hH-pT8" kind="showDetail" animates="NO" action="showViewController:sender:" id="j5O-xd-4oc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mHm-rh-9UR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="35" id="3iS-Yw-Tyi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="q6w-fc-pUU" secondAttribute="bottom" constant="20" id="FDr-uj-1iE"/>
                             <constraint firstItem="mHm-rh-9UR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M5K-iO-xz8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="6Gj-eE-Xx9" secondAttribute="bottom" constant="30" id="WaD-Kt-g6V"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Gj-eE-Xx9" secondAttribute="trailing" constant="27" id="sKN-ft-DAs"/>
                             <constraint firstItem="q6w-fc-pUU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="u5m-px-OT7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -157,6 +147,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="21.600000000000001" y="28.817733990147783"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="Z3r-c8-j0Y">
+            <objects>
+                <viewController id="p6Q-hH-pT8" customClass="HelpViewController" customModule="EnchantedRoseBLE" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aPQ-Hm-F6H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4e2-jO-UW9">
+                                <rect key="frame" x="8" y="92" width="359" height="678"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ul4-xj-eJO">
+                                <rect key="frame" x="8" y="54" width="65" height="30"/>
+                                <state key="normal" title="&lt; Back">
+                                    <color key="titleColor" red="1" green="0.7667008219" blue="0.23132404370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="showDetail" animates="NO" action="showViewController:sender:" id="OXf-WD-O1J"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4e2-jO-UW9" firstAttribute="leading" secondItem="wm4-jp-RdC" secondAttribute="leading" constant="8" id="0z7-Zi-u0r"/>
+                            <constraint firstItem="wm4-jp-RdC" firstAttribute="bottom" secondItem="4e2-jO-UW9" secondAttribute="bottom" constant="8" id="H57-YN-UAQ"/>
+                            <constraint firstItem="Ul4-xj-eJO" firstAttribute="top" secondItem="wm4-jp-RdC" secondAttribute="top" id="bj0-dB-XZK"/>
+                            <constraint firstItem="Ul4-xj-eJO" firstAttribute="leading" secondItem="wm4-jp-RdC" secondAttribute="leading" constant="8" id="f0E-fO-uIm"/>
+                            <constraint firstItem="wm4-jp-RdC" firstAttribute="trailing" secondItem="4e2-jO-UW9" secondAttribute="trailing" constant="8" id="jeO-yV-2cZ"/>
+                            <constraint firstItem="4e2-jO-UW9" firstAttribute="top" secondItem="Ul4-xj-eJO" secondAttribute="bottom" constant="4" id="nEu-i2-Ocj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wm4-jp-RdC"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="4e2-jO-UW9" id="9HO-jj-RmA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CWZ-xJ-KoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781.60000000000002" y="28.817733990147783"/>
         </scene>
     </scenes>
     <resources>

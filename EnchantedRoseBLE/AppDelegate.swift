@@ -10,6 +10,9 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    
+    var ble = BLE()
 
     var window: UIWindow?
 
