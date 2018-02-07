@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201B802CF4A06D35DAF43866 /* Pods_EnchantedRoseBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4706DD21962E12B3BC8466 /* Pods_EnchantedRoseBLE.framework */; };
 		AA01EB0D2022538A005CB388 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA01EB0C2022538A005CB388 /* AppDelegate.swift */; };
 		AA01EB0F2022538A005CB388 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA01EB0E2022538A005CB388 /* ViewController.swift */; };
 		AA01EB122022538A005CB388 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB102022538A005CB388 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		AA01EB5C202282D2005CB388 /* Icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB3E202282D1005CB388 /* Icon-80.png */; };
 		AA01EB5D202282D2005CB388 /* Icon-20.png in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB3F202282D1005CB388 /* Icon-20.png */; };
 		AA01EB5E202282D2005CB388 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB40202282D2005CB388 /* Icon-40.png */; };
+		AA0F51E1202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F51E0202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png */; };
 		AA2235572024E5CE00FD7945 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2235562024E5CE00FD7945 /* WebKit.framework */; };
 		AA22355B2024E77300FD7945 /* overview.html in Resources */ = {isa = PBXBuildFile; fileRef = AA22355A2024E77300FD7945 /* overview.html */; };
 		AABB3F9C20266E7C0049C9CF /* enchanted-rose-bw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F4706DD21962E12B3BC8466 /* Pods_EnchantedRoseBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnchantedRoseBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71618CBA6C680B0203E2F4AB /* Pods-EnchantedRoseBLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnchantedRoseBLE.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnchantedRoseBLE/Pods-EnchantedRoseBLE.debug.xcconfig"; sourceTree = "<group>"; };
 		AA01EB092022538A005CB388 /* EnchantedRoseBLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnchantedRoseBLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA01EB0C2022538A005CB388 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA01EB0E2022538A005CB388 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,11 +96,13 @@
 		AA01EB3E202282D1005CB388 /* Icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-80.png"; sourceTree = "<group>"; };
 		AA01EB3F202282D1005CB388 /* Icon-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-20.png"; sourceTree = "<group>"; };
 		AA01EB40202282D2005CB388 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		AA0F51E0202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "beauty-and-the-beast-52b2dcc4097ff.png"; path = "../../../../Downloads/beauty-and-the-beast-52b2dcc4097ff.png"; sourceTree = "<group>"; };
 		AA2235562024E5CE00FD7945 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		AA22355A2024E77300FD7945 /* overview.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = overview.html; sourceTree = "<group>"; };
 		AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "enchanted-rose-bw.jpg"; sourceTree = "<group>"; };
 		AABB3F9D2028E95C0049C9CF /* light-bulb-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "light-bulb-icon.png"; path = "../../../../Downloads/light-bulb-icon.png"; sourceTree = "<group>"; };
 		AACDC6DD202A6B6600447C57 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		B0D4AF257FFCC81BF2ED4FC2 /* Pods-EnchantedRoseBLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnchantedRoseBLE.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnchantedRoseBLE/Pods-EnchantedRoseBLE.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA2235572024E5CE00FD7945 /* WebKit.framework in Frameworks */,
+				201B802CF4A06D35DAF43866 /* Pods_EnchantedRoseBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +124,7 @@
 				AA01EB0B2022538A005CB388 /* EnchantedRoseBLE */,
 				AA01EB0A2022538A005CB388 /* Products */,
 				AA2235552024E5CD00FD7945 /* Frameworks */,
+				D9CABE8541FEF4C3AA62FA8A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +177,7 @@
 				AA01EB3B202282D1005CB388 /* Icon-512.png */,
 				AA01EB35202282CF005CB388 /* Icon-1024.png */,
 				AA01EB152022538A005CB388 /* LaunchScreen.storyboard */,
+				AA0F51E0202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png */,
 				AA01EB182022538A005CB388 /* Info.plist */,
 				AA01EB1E2022539C005CB388 /* BLE.swift */,
 				AA01EB20202253EA005CB388 /* BLEDefines.h */,
@@ -182,8 +191,18 @@
 			isa = PBXGroup;
 			children = (
 				AA2235562024E5CE00FD7945 /* WebKit.framework */,
+				2F4706DD21962E12B3BC8466 /* Pods_EnchantedRoseBLE.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9CABE8541FEF4C3AA62FA8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71618CBA6C680B0203E2F4AB /* Pods-EnchantedRoseBLE.debug.xcconfig */,
+				B0D4AF257FFCC81BF2ED4FC2 /* Pods-EnchantedRoseBLE.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +212,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA01EB1B2022538A005CB388 /* Build configuration list for PBXNativeTarget "EnchantedRoseBLE" */;
 			buildPhases = (
+				96C794637875FDA1ABC34E61 /* [CP] Check Pods Manifest.lock */,
 				AA01EB052022538A005CB388 /* Sources */,
 				AA01EB062022538A005CB388 /* Frameworks */,
 				AA01EB072022538A005CB388 /* Resources */,
+				5A2CFA44D5E74990B13D1A85 /* [CP] Embed Pods Frameworks */,
+				BDE6A34297B043B20C6DBB6B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,12 +302,67 @@
 				AA01EB50202282D2005CB388 /* Icon-76.png in Resources */,
 				AA01EB5C202282D2005CB388 /* Icon-80.png in Resources */,
 				AA01EB4E202282D2005CB388 /* Icon-128.png in Resources */,
+				AA0F51E1202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png in Resources */,
 				AA01EB57202282D2005CB388 /* Icon-172.png in Resources */,
 				AA01EB42202282D2005CB388 /* Icon-87.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A2CFA44D5E74990B13D1A85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EnchantedRoseBLE/Pods-EnchantedRoseBLE-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PDColorPicker/PDColorPicker.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PDColorPicker.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EnchantedRoseBLE/Pods-EnchantedRoseBLE-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96C794637875FDA1ABC34E61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EnchantedRoseBLE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDE6A34297B043B20C6DBB6B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EnchantedRoseBLE/Pods-EnchantedRoseBLE-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA01EB052022538A005CB388 /* Sources */ = {
@@ -430,6 +507,7 @@
 		};
 		AA01EB1C2022538A005CB388 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71618CBA6C680B0203E2F4AB /* Pods-EnchantedRoseBLE.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,6 +523,7 @@
 		};
 		AA01EB1D2022538A005CB388 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0D4AF257FFCC81BF2ED4FC2 /* Pods-EnchantedRoseBLE.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

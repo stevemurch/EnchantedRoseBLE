@@ -16,6 +16,10 @@ class HelpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        webView.isOpaque = false
+        webView.backgroundColor = .clear
+        
+        
         showHelp()
         
         // Do any additional setup after loading the view.
@@ -23,10 +27,13 @@ class HelpViewController: UIViewController {
     
     func showHelp() {
         
+        
+        
         let htmlPath = Bundle.main.path(forResource: "overview", ofType: "html")
         let url = URL(fileURLWithPath: htmlPath!)
         let request = URLRequest(url: url)
         webView.load(request)
+        
         
     }
 

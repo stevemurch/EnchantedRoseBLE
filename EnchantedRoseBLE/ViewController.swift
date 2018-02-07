@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-
+import PDColorPicker
 
 // Petal - L{pin}{value}
 // Light - H{value}     (0 = off, 1 = Dim, 2 = Pulse)
@@ -16,7 +15,9 @@ import UIKit
 // General Text -
 // Set Color: C
 
-class ViewController: UIViewController, BLEDelegate {
+class ViewController: UIViewController, BLEDelegate, Dimmable {
+    
+    
     func bleDidUpdateState() {
         print("bleDidUpdateState")
     }
@@ -49,9 +50,62 @@ class ViewController: UIViewController, BLEDelegate {
     @IBOutlet weak var lblSliderTip: UILabel!
     
     
+    @IBOutlet weak var colorButton: UIButton!
+    
     func getBle() -> BLE {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.ble
+    }
+    
+    func presentColorPicker() {
+        // 2.
+        
+        let defaults = UserDefaults.standard
+        var initialColor: UIColor = .red
+        
+        if let savedColor = defaults.colorForKey(key: "neoPixelColor") {
+            initialColor = savedColor
+        }
+        
+        let colorPickerVC = PDColorPickerViewController(initialColor: initialColor, tintColor: .black)
+        
+        // 3.
+        colorPickerVC.completion = {
+            [weak self] newColor in
+            
+            self?.undim() // 7.
+            
+            guard let color = newColor else {
+                print("The user tapped cancel, no color was selected.")
+                return
+            }
+            
+            print("A new color was selected! HSBA: \(String(describing: color))")
+            
+            // send to device
+            let r = UInt8(color.rgba.r * 255)
+            let g = UInt8(color.rgba.g * 255)
+            let b = UInt8(color.rgba.b * 255)
+            
+            // send a C (color) followed by 3 bytes
+            let colorPayload = NSData(bytes: [0x43, r, g, b] as [UInt8], length: 4)
+            self?.getBle().write(data: colorPayload)
+            self?.lightSegmentedControl.selectedSegmentIndex = 1
+            
+            self?.colorButton.backgroundColor = color.uiColor
+            
+            let defaults = UserDefaults.standard
+            
+            defaults.setColor(color: color.uiColor, forKey: "neoPixelColor")
+            
+            
+        }
+        
+        // 4.
+        dim() // see Dimmable documentation for extra options
+        
+        // 5.
+        present(colorPickerVC, animated: true)
     }
     
     
@@ -100,8 +154,29 @@ class ViewController: UIViewController, BLEDelegate {
         {
         case 0: lightValue = 0
         break
-        case 1: lightValue = 1
-        break
+        case 1: lightValue = 1 // ON to saved color
+        
+
+            let defaults = UserDefaults.standard
+            var initialColor: UIColor = .red
+            
+            if let savedColor = defaults.colorForKey(key: "neoPixelColor") {
+                initialColor = savedColor
+            }
+            
+            // send to device
+            let r = UInt8(CIColor(color:initialColor).red*255)
+            let g = UInt8(CIColor(color:initialColor).green*255)
+            let b = UInt8(CIColor(color:initialColor).blue*255)
+            
+            // send a C (color) followed by 3 bytes
+            let colorPayload = NSData(bytes: [0x43, r, g, b] as [UInt8], length: 4)
+            self.getBle().write(data: colorPayload)
+            self.lightSegmentedControl.selectedSegmentIndex = 1
+            return;
+            
+        
+        
         case 2:
             lightValue = 2
             break
@@ -140,10 +215,16 @@ class ViewController: UIViewController, BLEDelegate {
             hideSliderTip()
         }
         
+        
+        
     }
     
     
     
+    @IBAction func setLightToColor(_ sender: Any) {
+        
+        presentColorPicker()
+    }
     
     
     
@@ -196,6 +277,18 @@ class ViewController: UIViewController, BLEDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        let defaults = UserDefaults.standard
+        if let initialColor = defaults.colorForKey(key: "neoPixelColor") {
+            
+            self.colorButton.backgroundColor = initialColor
+        }
+        else {
+            self.colorButton.backgroundColor = .blue
+            defaults.setColor(color: .blue, forKey: "neoPixelColor")
+            
+        }
+            
         // Do any additional setup after loading the view, typically from a nib.
         
         getBle().delegate = self // I'd like to receive messages from BLE device
@@ -220,15 +313,42 @@ class ViewController: UIViewController, BLEDelegate {
             self.roseColorUIImageView.isHidden = true
         }
         
- 
+        
+        
+        
   
+    }
+    
+    @objc func ef_dismissViewController(sender: Any){
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
 
+}
+
+
+extension UserDefaults {
+    func colorForKey(key: String) -> UIColor? {
+        var color: UIColor?
+        if let colorData = data(forKey: key) {
+            color = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
+        }
+        return color
+    }
+    
+    func setColor(color: UIColor?, forKey key: String) {
+        var colorData: NSData?
+        if let color = color {
+            colorData = NSKeyedArchiver.archivedData(withRootObject: color) as NSData?
+        }
+        set(colorData, forKey: key)// UserDefault Built-in Method into Any?
+    }
 }
 

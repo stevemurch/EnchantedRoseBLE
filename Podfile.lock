@@ -1,0 +1,12 @@
+PODS:
+  - PDColorPicker (0.7.0)
+
+DEPENDENCIES:
+  - PDColorPicker
+
+SPEC CHECKSUMS:
+  PDColorPicker: d60da904c9a81ad8ba965528ed12b979d7305ee4
+
+PODFILE CHECKSUM: f2bed72ee9e716dad8a5dd5e63f5b40a198bcab3
+
+COCOAPODS: 1.4.0

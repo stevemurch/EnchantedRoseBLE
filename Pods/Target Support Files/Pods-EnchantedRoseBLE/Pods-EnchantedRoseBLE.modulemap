@@ -1,0 +1,6 @@
+framework module Pods_EnchantedRoseBLE {
+  umbrella header "Pods-EnchantedRoseBLE-umbrella.h"
+
+  export *
+  module * { export * }
+}
