@@ -46,6 +46,7 @@
 		AA01EB5D202282D2005CB388 /* Icon-20.png in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB3F202282D1005CB388 /* Icon-20.png */; };
 		AA01EB5E202282D2005CB388 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = AA01EB40202282D2005CB388 /* Icon-40.png */; };
 		AA0F51E1202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F51E0202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png */; };
+		AA0F51E3202CD48900ADC493 /* CalibrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F51E2202CD48900ADC493 /* CalibrationViewController.swift */; };
 		AA2235572024E5CE00FD7945 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2235562024E5CE00FD7945 /* WebKit.framework */; };
 		AA22355B2024E77300FD7945 /* overview.html in Resources */ = {isa = PBXBuildFile; fileRef = AA22355A2024E77300FD7945 /* overview.html */; };
 		AABB3F9C20266E7C0049C9CF /* enchanted-rose-bw.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */; };
@@ -97,6 +98,7 @@
 		AA01EB3F202282D1005CB388 /* Icon-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-20.png"; sourceTree = "<group>"; };
 		AA01EB40202282D2005CB388 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
 		AA0F51E0202B7D2200ADC493 /* beauty-and-the-beast-52b2dcc4097ff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "beauty-and-the-beast-52b2dcc4097ff.png"; path = "../../../../Downloads/beauty-and-the-beast-52b2dcc4097ff.png"; sourceTree = "<group>"; };
+		AA0F51E2202CD48900ADC493 /* CalibrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationViewController.swift; sourceTree = "<group>"; };
 		AA2235562024E5CE00FD7945 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		AA22355A2024E77300FD7945 /* overview.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = overview.html; sourceTree = "<group>"; };
 		AABB3F9B20266E7C0049C9CF /* enchanted-rose-bw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "enchanted-rose-bw.jpg"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				AA01EB20202253EA005CB388 /* BLEDefines.h */,
 				AA22355A2024E77300FD7945 /* overview.html */,
 				AACDC6DD202A6B6600447C57 /* HelpViewController.swift */,
+				AA0F51E2202CD48900ADC493 /* CalibrationViewController.swift */,
 			);
 			path = EnchantedRoseBLE;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			files = (
 				AA01EB0F2022538A005CB388 /* ViewController.swift in Sources */,
 				AA01EB1F2022539C005CB388 /* BLE.swift in Sources */,
+				AA0F51E3202CD48900ADC493 /* CalibrationViewController.swift in Sources */,
 				AA01EB0D2022538A005CB388 /* AppDelegate.swift in Sources */,
 				AACDC6DE202A6B6600447C57 /* HelpViewController.swift in Sources */,
 			);

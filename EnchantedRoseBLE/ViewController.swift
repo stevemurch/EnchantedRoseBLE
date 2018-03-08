@@ -49,6 +49,7 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
     @IBOutlet weak var lblConnectionStatus: UILabel!
     @IBOutlet weak var lblSliderTip: UILabel!
     
+    @IBOutlet weak var accentLightSwitch: UISwitch!
     
     @IBOutlet weak var colorButton: UIButton!
     
@@ -56,6 +57,29 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.ble
     }
+    
+    
+    @IBAction func accentLightSwitched(_ sender: Any) {
+        
+        
+        
+        if (self.accentLightSwitch.isOn)
+        {
+            // send a Y
+            let payload = NSData(bytes: [0x59] as [UInt8], length: 1)
+            self.getBle().write(data: payload)
+        } else
+        {
+            //send an X
+            let payload = NSData(bytes: [0x58] as [UInt8], length: 1)
+            self.getBle().write(data: payload)
+            
+        }
+        
+        
+        
+    }
+    
     
     func presentColorPicker() {
         // 2.
@@ -132,6 +156,9 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
             print("Handle Cancel Logic here")
         }))
         
+        self.accentLightSwitch.setOn(false, animated: true)
+        
+        
         present(refreshAlert, animated: true, completion: nil)
        
     }
@@ -147,7 +174,7 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
     
     @IBAction func lightSegmentedControlChanged(_ sender: Any) {
         
-        print("light changed; send an H")
+        
         
         var lightValue:UInt8 = 0
         switch(lightSegmentedControl.selectedSegmentIndex)
@@ -179,6 +206,12 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         
         case 2:
             lightValue = 2
+            
+            // send a W (rainboW)
+            let payload = NSData(bytes: [0x57] as [UInt8], length: 1)
+            self.getBle().write(data: payload)
+            
+            
             break
         default:
             lightValue = 0
@@ -206,6 +239,8 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         let valInt = UInt8(sender.value)
         let petalPayload = NSData(bytes: [0x4C, pinNo, valInt] as [UInt8], length: 3)
         getBle().write(data: petalPayload)
+        
+        updateConnectionLabel(data:"send \(valInt)")
         
         if (valInt<170) && (valInt>10)
         {
@@ -269,6 +304,38 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         
     }
     
+    func loadSliderCalibration()
+    {
+        let defaults = UserDefaults.standard
+        
+        petal1Slider.minimumValue = Float(defaults.integer(forKey:"min1"))
+        petal2Slider.minimumValue = Float(defaults.integer(forKey:"min2"))
+        petal3Slider.minimumValue = Float(defaults.integer(forKey:"min3"))
+        petal4Slider.minimumValue = Float(defaults.integer(forKey:"min4"))
+        
+        if (defaults.integer(forKey:"max1") == 0)
+        {
+            defaults.set(180, forKey:"max1")
+        }
+        petal1Slider.maximumValue = Float(defaults.integer(forKey:"max1"))
+        if (defaults.integer(forKey:"max2") == 0)
+        {
+            defaults.set(180, forKey:"max2")
+        }
+        petal2Slider.maximumValue = Float(defaults.integer(forKey:"max2"))
+        if (defaults.integer(forKey:"max3") == 0)
+        {
+            defaults.set(180, forKey:"max3")
+        }
+        petal3Slider.maximumValue = Float(defaults.integer(forKey:"max3"))
+        if (defaults.integer(forKey:"max4") == 0)
+        {
+            defaults.set(180, forKey:"max4")
+        }
+        petal4Slider.maximumValue = Float(defaults.integer(forKey:"max4"))
+    }
+    
+    
     func updateConnectionLabel(data: String)
     {
         self.lblConnectionStatus.text = data
@@ -277,6 +344,8 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        loadSliderCalibration() // set min/max from calibration values, initially 0-180
         
         let defaults = UserDefaults.standard
         if let initialColor = defaults.colorForKey(key: "neoPixelColor") {
