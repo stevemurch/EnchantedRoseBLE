@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14111" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,19 +15,28 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="enchanted-rose-bw.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-Hr-66y">
-                                <rect key="frame" x="-4" y="-15" width="375" height="644"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="enchanted-rose-bw.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-Hr-66y">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="beauty-and-the-beast-52b2dcc4097ff.png" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-eN-q5f">
-                                <rect key="frame" x="67" y="287" width="240" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beauty-and-the-beast-52b2dcc4097ff.png" translatesAutoresizingMaskIntoConstraints="NO" id="3aV-eN-q5f">
+                                <rect key="frame" x="159" y="357" width="450" height="310"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="450" id="dZF-xY-6lh"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="3aV-eN-q5f" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Rku-zb-ATD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fb3-Hr-66y" secondAttribute="bottom" id="Wtp-4e-BFS"/>
+                            <constraint firstItem="fb3-Hr-66y" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="hEr-sz-vG2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fb3-Hr-66y" secondAttribute="trailing" id="ke4-g5-uFd"/>
+                            <constraint firstItem="3aV-eN-q5f" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qdN-cw-zyD"/>
+                            <constraint firstItem="fb3-Hr-66y" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="wWe-W6-iCG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

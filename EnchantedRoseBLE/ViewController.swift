@@ -25,12 +25,14 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
     func bleDidConnectToPeripheral() {
         print("bleDidConnectToPeripheral")
         roseColorUIImageView.isHidden = false
+        self.lblNotConnectedMessage.isHidden = true
         roseBWUIImageVIew.isHidden = true
     }
     
     func bleDidDisconnectFromPeripheral() {
         print("bleDidDisconnectFromPeripheral")
         roseColorUIImageView.isHidden = true
+        self.lblNotConnectedMessage.isHidden = false
         roseBWUIImageVIew.isHidden = false
     }
     
@@ -42,6 +44,7 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         }
     }
   
+    @IBOutlet weak var lblNotConnectedMessage: UILabel!
     
     // User Interface
     @IBOutlet weak var roseBWUIImageVIew: UIImageView!
@@ -130,6 +133,37 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         
         // 5.
         present(colorPickerVC, animated: true)
+    }
+    
+    
+    @IBAction func dropPetalButtonPressed(_ sender: UIButton) {
+        
+        let buttonNumber = sender.tag
+        var charToSend: UInt8 = 0x49
+        
+        
+        switch(buttonNumber)
+        {
+        case 1:
+            charToSend = 0x49 // '1' in ASCII
+            break
+        case 2:
+            charToSend = 0x50 // '2'
+            break
+        case 3:
+            charToSend = 0x51 // '3'
+            break
+        case 4:
+            charToSend = 0x52 // '4'
+            break
+        default:
+            break
+        }
+        
+        let payload = NSData(bytes: [charToSend] as [UInt8], length: 1)
+        getBle().write(data: payload)
+        
+        
     }
     
     
@@ -304,36 +338,7 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         
     }
     
-    func loadSliderCalibration()
-    {
-        let defaults = UserDefaults.standard
-        
-        petal1Slider.minimumValue = Float(defaults.integer(forKey:"min1"))
-        petal2Slider.minimumValue = Float(defaults.integer(forKey:"min2"))
-        petal3Slider.minimumValue = Float(defaults.integer(forKey:"min3"))
-        petal4Slider.minimumValue = Float(defaults.integer(forKey:"min4"))
-        
-        if (defaults.integer(forKey:"max1") == 0)
-        {
-            defaults.set(180, forKey:"max1")
-        }
-        petal1Slider.maximumValue = Float(defaults.integer(forKey:"max1"))
-        if (defaults.integer(forKey:"max2") == 0)
-        {
-            defaults.set(180, forKey:"max2")
-        }
-        petal2Slider.maximumValue = Float(defaults.integer(forKey:"max2"))
-        if (defaults.integer(forKey:"max3") == 0)
-        {
-            defaults.set(180, forKey:"max3")
-        }
-        petal3Slider.maximumValue = Float(defaults.integer(forKey:"max3"))
-        if (defaults.integer(forKey:"max4") == 0)
-        {
-            defaults.set(180, forKey:"max4")
-        }
-        petal4Slider.maximumValue = Float(defaults.integer(forKey:"max4"))
-    }
+    
     
     
     func updateConnectionLabel(data: String)
@@ -345,7 +350,7 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         
         super.viewDidLoad()
         
-        loadSliderCalibration() // set min/max from calibration values, initially 0-180
+        
         
         let defaults = UserDefaults.standard
         if let initialColor = defaults.colorForKey(key: "neoPixelColor") {
@@ -366,9 +371,7 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         //_ = getBle().disconnectAll() // reset
         
         getBle().onDataUpdate = { [weak self] (data: String) in
-            
             // when a data update is received, push it to screen
-            
             self?.updateConnectionLabel(data: data)
         }
         
@@ -376,10 +379,13 @@ class ViewController: UIViewController, BLEDelegate, Dimmable {
         {
             self.roseBWUIImageVIew.isHidden = true
             self.roseColorUIImageView.isHidden = false
-        } else
+            //self.lblNotConnectedMessage.isHidden = true
+        }
+        else
         {
             self.roseBWUIImageVIew.isHidden = false
             self.roseColorUIImageView.isHidden = true
+            //self.lblNotConnectedMessage.isHidden = false
         }
         
         
